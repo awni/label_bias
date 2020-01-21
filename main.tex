@@ -47,7 +47,7 @@ output or label sequence.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/memm.pdf}
+    \includegraphics[width=0.6\textwidth]{figures/memm.pdf}
     \caption{The graphical model for the maximum entropy Markov model (MEMM).}
     \label{fig:memm}
 \end{figure}
@@ -85,7 +85,7 @@ along with the associated probabilities $p(y_t~\!\mid~\!x_t, y_{t-1})$.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/memm_inference_normalized.pdf}
+    \includegraphics[width=0.6\textwidth]{figures/memm_inference_normalized.pdf}
     \caption{An inference graph for the MEMM with the label set
     \texttt{\{ARTICLE, NOUN, VERB\}}.  Each arc is labelled with the
     probability of transitioning to the corresponding state given the
@@ -119,7 +119,7 @@ at the \emph{unnormalized} inference graph in Figure~\ref{fig:memm_inf_unnorm}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/memm_inference_unnormalized.pdf}
+    \includegraphics[width=0.6\textwidth]{figures/memm_inference_unnormalized.pdf}
     \caption{An \emph{unnormalized} inference graph for the MEMM with the label
     set \texttt{\{ARTICLE, NOUN, VERB\}}. Each arc is labelled with the score
     of transitioning to the corresponding state given the observation. For
@@ -180,7 +180,7 @@ states distribute probability mass equally among their successor states: $p(y_t
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/number_transitions.pdf}
+    \includegraphics[width=0.9\textwidth]{figures/number_transitions.pdf}
     \caption{An example of three states, \texttt{A}, \texttt{B} and \texttt{C},
     which have uniform outgoing transition distributions. Label bias will cause
     the inference procedure to favor paths which go through state \texttt{C}.}
@@ -223,7 +223,7 @@ p(b) = 0.5$).
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/entropy_example.pdf}
+    \includegraphics[width=0.9\textwidth]{figures/entropy_example.pdf}
     \caption{An example of three states, \texttt{A}, \texttt{B} and \texttt{C},
     each with two possible outgoing transitions. Each transition is labelled
     with the observation and probability pair for two observations, \texttt{a}
@@ -243,7 +243,7 @@ $p(y_t \mid y_{t-1})$ on the corresponding arc for each example.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/entropy_example_no_obs.pdf}
+    \includegraphics[width=0.9\textwidth]{figures/entropy_example_no_obs.pdf}
     \caption{An example of three states, \texttt{A}, \texttt{B} and \texttt{C},
     each with two possible outgoing transitions.  Each transition is labelled
     with the probability $p(y_t \mid y_{t-1})$ which are computed from the
@@ -349,6 +349,13 @@ from label bias and some of which do not.
 
 \subsection{Hidden Markov Model}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/hmm.pdf}
+    \caption{The graphical model for the hidden Markov model (HMM).}
+    \label{fig:hmm}
+\end{figure}
+
 The hidden Markov model (HMM) is a generative model which makes two assumptions
 about the data generating distribution. First, it assumes that the observation
 $x_t$ is conditionally independent of all other $y$ and $x$ given the hidden
@@ -366,25 +373,9 @@ the only difference between the graphical model for an HMM
 (Figure~\ref{fig:hmm}) and the MEMM is the direction of the arrows between
 $x_t$ and $y_t$.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/hmm.pdf}
-    \caption{The graphical model for the hidden Markov model (HMM).}
-    \label{fig:hmm}
-\end{figure}
-
 As a simple rule of thumb, generative models do not suffer from label bias. One
 way to see this for the HMM specifically is to look at the corresponding
 inference graph, as in Figure~\ref{fig:hmm_inference}.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/hmm_inference.pdf}
-    \caption{An inference graph for the HMM with the label set
-    \texttt{\{ARTICLE, NOUN, VERB\}}. The scores for the given observation on
-    each arc are not shown.}
-    \label{fig:hmm_inference}
-\end{figure}
 
 The scores on each edge associated with an observation are given by $p(x_t
 \mid y_t) p(y_t \mid y_{t-1})$. In general the sum of these scores over all
@@ -397,6 +388,15 @@ possible next states is not required to be one:
 More importantly, the sum is not a constant, but can change depending on the
 observation and the previous state. This implies that we do not have
 conservation of score mass and hence label bias is not an issue.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/hmm_inference.pdf}
+    \caption{An inference graph for the HMM with the label set
+    \texttt{\{ARTICLE, NOUN, VERB\}}. The scores for the given observation on
+    each arc are not shown.}
+    \label{fig:hmm_inference}
+\end{figure}
 
 \subsection{Sequence-to-sequence Models}
 
@@ -479,7 +479,7 @@ is no label bias. The model acts as if the transition probabilities $p(y_t \mid
 y_{t-1})$ are uniform and the same for all $y_{t-1}$. This means the entropies
 of these distributions are all the same and maximal.
 
-The model does have conservation of score mass in the sense that $\sum_{i=1}^c
+The model does have conservation of score mass in that $\sum_{i=1}^c
 p(y_i \mid X) = 1$. However, new evidence can arbitrarily influence the
 plausibility of a given path. The model can favor paths which have a certain
 label at a given time step by giving the corresponding $p(y_t \mid X)$ a value
